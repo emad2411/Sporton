@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class NewsRvAdapter extends RecyclerView.Adapter<NewsRvAdapter.NewsViewHolder> {
@@ -52,15 +54,28 @@ public class NewsRvAdapter extends RecyclerView.Adapter<NewsRvAdapter.NewsViewHo
         ImageView mAgencyImage;
         ImageView mNewsImage;
 
-        public NewsViewHolder(View itemView) {
+         NewsViewHolder(View itemView) {
             super(itemView);
-            mAgencyNameText= itemView.findViewById(R.id.agency_name);
-            mTime=itemView.findViewById(R.id.news_time);
-            mTitle=itemView.findViewById(R.id.news_title);
-            mDescription=itemView.findViewById(R.id.news_description);
-            mAgencyImage= itemView.findViewById(R.id.agency_image);
-            mNewsImage= itemView.findViewById(R.id.news_image);
+            mAgencyNameText= (TextView) itemView.findViewById(R.id.agency_name);
+            mTime=(TextView)itemView.findViewById(R.id.news_time);
+            mTitle=(TextView)itemView.findViewById(R.id.news_title);
+            mDescription=(TextView)itemView.findViewById(R.id.news_description);
+            mAgencyImage= (ImageView) itemView.findViewById(R.id.agency_image);
+            mNewsImage= (ImageView) itemView.findViewById(R.id.news_image);
         }
+
+        void bindViews(int position){
+            mAgencyNameText.setText(mNews.get(position).getNewsAgencyName());
+            mTime.setText(mNews.get(position).getPublishDate());
+            mTitle.setText(mNews.get(position).getTitle());
+            mDescription.setText(mNews.get(position).getNewsDescription());
+            Picasso.with(mContext).load(mNews.get(position).getImageURL()).into(mNewsImage);
+
+            mAgencyImage.setImageResource(mNews.get(position).getAgencyDrawable());
+
+
+        }
+
     }
 
 

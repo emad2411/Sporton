@@ -1,6 +1,8 @@
 package com.emadjaber.sporton;
 
 
+import android.graphics.drawable.Drawable;
+
 public class News {
 
     private String mNewsAgencyName;
@@ -11,6 +13,7 @@ public class News {
     private String mPublishTime;
     private String mURL;
     private String mImageURL;
+
 
 
     public String getNewsAgencyName() {
@@ -75,5 +78,18 @@ public class News {
 
     public void setImageURL(String imageURL) {
         mImageURL = imageURL;
+    }
+
+    public int getAgencyDrawable() {
+
+        switch (getNewsAgencyName()){
+
+            case "bbc-news":
+                return R.drawable.bbc;
+            default:
+                return R.drawable.newspaper;
+        }
+
+
     }
 }

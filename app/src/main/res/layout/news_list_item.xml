@@ -27,8 +27,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
                     android:contentDescription="news image"
-                    app:srcCompat="@mipmap/ic_launcher"/>
+                    app:srcCompat="@drawable/bbc"/>
 
                 <TextView
                     android:id="@+id/agency_name"
@@ -37,7 +38,7 @@
                     android:layout_gravity="center_vertical"
                     android:padding="5dp"
                     android:layout_weight="2"
-                    tools:text="Fox Sport"/>
+                    tools:text="BBC News"/>
 
                 <TextView
                     android:id="@+id/news_time"
