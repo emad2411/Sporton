@@ -11,14 +11,13 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
 public class NewsRvAdapter extends RecyclerView.Adapter<NewsRvAdapter.NewsViewHolder> {
     private Context mContext;
-    private List<News> mNews;
+    private ActiveNews mActiveNews;
 
-    public NewsRvAdapter(Context context) {
+    public NewsRvAdapter(Context context, ActiveNews activeNews) {
         mContext=context;
+        mActiveNews=activeNews;
     }
 
     @Override
@@ -31,24 +30,29 @@ public class NewsRvAdapter extends RecyclerView.Adapter<NewsRvAdapter.NewsViewHo
 
     @Override
     public void onBindViewHolder(NewsViewHolder holder, int position) {
+        holder.bindViews(position);
 
     }
 
     @Override
     public int getItemCount() {
-        if (mNews==null){
+        if (mActiveNews==null){
             return 0;
         }else {
-            return mNews.size();
+            if(mActiveNews.news.length==0){
+                return 0;
+            }else {
+                return mActiveNews.news.length;
+            }
         }
-
     }
 
 
-    class NewsViewHolder extends RecyclerView.ViewHolder{
 
-        TextView mAgencyNameText;
-        TextView mTime;
+
+    class NewsViewHolder extends RecyclerView.ViewHolder{
+        TextView mPublisher;
+        TextView mPublishDate;
         TextView mTitle;
         TextView mDescription;
         ImageView mAgencyImage;
@@ -56,27 +60,28 @@ public class NewsRvAdapter extends RecyclerView.Adapter<NewsRvAdapter.NewsViewHo
 
          NewsViewHolder(View itemView) {
             super(itemView);
-            mAgencyNameText= (TextView) itemView.findViewById(R.id.agency_name);
-            mTime=(TextView)itemView.findViewById(R.id.news_time);
-            mTitle=(TextView)itemView.findViewById(R.id.news_title);
-            mDescription=(TextView)itemView.findViewById(R.id.news_description);
-            mAgencyImage= (ImageView) itemView.findViewById(R.id.agency_image);
-            mNewsImage= (ImageView) itemView.findViewById(R.id.news_image);
+             mPublisher=(TextView)itemView.findViewById(R.id.publisher);
+             mTitle=(TextView)itemView.findViewById(R.id.news_title);
+             mPublishDate =(TextView)itemView.findViewById(R.id.publish_date);
+             mTitle=(TextView)itemView.findViewById(R.id.news_title);
+             mDescription=(TextView)itemView.findViewById(R.id.news_description);
+             mAgencyImage= (ImageView) itemView.findViewById(R.id.agency_image);
+             mNewsImage= (ImageView) itemView.findViewById(R.id.news_image);
         }
 
         void bindViews(int position){
-            mAgencyNameText.setText(mNews.get(position).getNewsAgencyName());
-            mTime.setText(mNews.get(position).getPublishDate());
-            mTitle.setText(mNews.get(position).getTitle());
-            mDescription.setText(mNews.get(position).getNewsDescription());
-            Picasso.with(mContext).load(mNews.get(position).getImageURL()).into(mNewsImage);
-
-            mAgencyImage.setImageResource(mNews.get(position).getAgencyDrawable());
-
-
+            mPublisher.setText(mActiveNews.source);
+            mTitle.setText(mActiveNews.news[position].getTitle());
+            mPublishDate.setText(mActiveNews.news[position].getPublishDate());
+            mDescription.setText(mActiveNews.news[position].getNewsDescription());
+            Picasso.with(mContext)
+                    .load(mActiveNews.news[position].getImageURL())
+                    .into(mNewsImage);
+            mAgencyImage.setImageResource(
+                    mActiveNews.getPublisherImageResId()
+            );
         }
 
     }
-
 
 }

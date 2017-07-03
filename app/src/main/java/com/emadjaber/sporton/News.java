@@ -2,26 +2,25 @@ package com.emadjaber.sporton;
 
 
 import android.graphics.drawable.Drawable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class News {
+public class News implements Parcelable {
 
-    private String mNewsAgencyName;
     private String mAuthorName;
     private String mTitle;
     private String mNewsDescription;
     private String mPublishDate;
-    private String mPublishTime;
     private String mURL;
     private String mImageURL;
 
-
-
-    public String getNewsAgencyName() {
-        return mNewsAgencyName;
-    }
-
-    public void setNewsAgencyName(String newsAgencyName) {
-        mNewsAgencyName = newsAgencyName;
+    public News(String authorName, String title, String newsDescription, String publishDate, String URL, String imageURL) {
+        mAuthorName = authorName;
+        mTitle = title;
+        mNewsDescription = newsDescription;
+        mPublishDate = publishDate;
+        mURL = URL;
+        mImageURL = imageURL;
     }
 
     public String getAuthorName() {
@@ -56,14 +55,6 @@ public class News {
         mPublishDate = publishDate;
     }
 
-    public String getPublishTime() {
-        return mPublishTime;
-    }
-
-    public void setPublishTime(String publishTime) {
-        mPublishTime = publishTime;
-    }
-
     public String getURL() {
         return mURL;
     }
@@ -80,16 +71,42 @@ public class News {
         mImageURL = imageURL;
     }
 
-    public int getAgencyDrawable() {
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-        switch (getNewsAgencyName()){
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.mAuthorName);
+        dest.writeString(this.mTitle);
+        dest.writeString(this.mNewsDescription);
+        dest.writeString(this.mPublishDate);
+        dest.writeString(this.mURL);
+        dest.writeString(this.mImageURL);
+    }
 
-            case "bbc-news":
-                return R.drawable.bbc;
-            default:
-                return R.drawable.newspaper;
+
+
+    protected News(Parcel in) {
+        this.mAuthorName = in.readString();
+        this.mTitle = in.readString();
+        this.mNewsDescription = in.readString();
+        this.mPublishDate = in.readString();
+        this.mURL = in.readString();
+        this.mImageURL = in.readString();
+    }
+
+    public static final Parcelable.Creator<News> CREATOR = new Parcelable.Creator<News>() {
+        @Override
+        public News createFromParcel(Parcel source) {
+            return new News(source);
         }
 
+        @Override
+        public News[] newArray(int size) {
+            return new News[size];
+        }
+    };
 
-    }
 }
