@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_gravity="center_vertical"
-                    android:contentDescription="news image"
+                    android:contentDescription="aNews image"
                     app:srcCompat="@drawable/bbc"/>
 
                 <TextView

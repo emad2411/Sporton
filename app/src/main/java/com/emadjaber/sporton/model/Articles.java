@@ -1,11 +1,10 @@
-package com.emadjaber.sporton;
+package com.emadjaber.sporton.model;
 
 
-import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class News implements Parcelable {
+public class Articles implements Parcelable {
 
     private String mAuthorName;
     private String mTitle;
@@ -14,7 +13,7 @@ public class News implements Parcelable {
     private String mURL;
     private String mImageURL;
 
-    public News(String authorName, String title, String newsDescription, String publishDate, String URL, String imageURL) {
+    public Articles(String authorName, String title, String newsDescription, String publishDate, String URL, String imageURL) {
         mAuthorName = authorName;
         mTitle = title;
         mNewsDescription = newsDescription;
@@ -88,7 +87,7 @@ public class News implements Parcelable {
 
 
 
-    protected News(Parcel in) {
+    protected Articles(Parcel in) {
         this.mAuthorName = in.readString();
         this.mTitle = in.readString();
         this.mNewsDescription = in.readString();
@@ -97,15 +96,15 @@ public class News implements Parcelable {
         this.mImageURL = in.readString();
     }
 
-    public static final Parcelable.Creator<News> CREATOR = new Parcelable.Creator<News>() {
+    public static final Parcelable.Creator<Articles> CREATOR = new Parcelable.Creator<Articles>() {
         @Override
-        public News createFromParcel(Parcel source) {
-            return new News(source);
+        public Articles createFromParcel(Parcel source) {
+            return new Articles(source);
         }
 
         @Override
-        public News[] newArray(int size) {
-            return new News[size];
+        public Articles[] newArray(int size) {
+            return new Articles[size];
         }
     };
 
