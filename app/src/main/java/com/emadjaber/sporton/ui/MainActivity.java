@@ -13,6 +13,8 @@ import com.emadjaber.sporton.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String FRAGMENT_TAG = "fragment tag";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,20 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        ArticlesListFragment downloadedArticlesList=
+                (ArticlesListFragment)getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+
+        if (downloadedArticlesList==null){
+            ArticlesListFragment articlesFragment=new ArticlesListFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.container,articlesFragment,FRAGMENT_TAG)
+                    .commit();
+        }
+
+
+
     }
 
     @Override

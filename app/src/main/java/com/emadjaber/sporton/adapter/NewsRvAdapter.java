@@ -25,7 +25,6 @@ implements Callback<SourceArticles>{
 
     public NewsRvAdapter(Context context) {
         mContext=context;
-
     }
 
     @Override
@@ -55,7 +54,6 @@ implements Callback<SourceArticles>{
 
     @Override
     public void success(SourceArticles sourceArticles, Response response) {
-        Log.i("KEY","success "+response.toString());
         mSourceArticles = sourceArticles;
         notifyDataSetChanged();
     }
@@ -64,6 +62,10 @@ implements Callback<SourceArticles>{
     public void failure(RetrofitError error) {
         Log.i("KEY","error "+error.toString());
 
+    }
+
+    public SourceArticles getSourceArticles(){
+        return mSourceArticles;
     }
 
 
