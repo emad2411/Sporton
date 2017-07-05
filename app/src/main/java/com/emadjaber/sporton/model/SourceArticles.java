@@ -9,11 +9,11 @@ import com.emadjaber.sporton.R;
 public class SourceArticles implements Parcelable {
 
     public String source;
-    public Articles[] mArticles;
+    public Articles[] articles;
 
     public SourceArticles(String source, Articles[] articles) {
         this.source = source;
-        this.mArticles = articles;
+        this.articles = articles;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class SourceArticles implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.source);
-        dest.writeTypedArray(this.mArticles, flags);
+        dest.writeTypedArray(this.articles, flags);
     }
 
     public SourceArticles() {
@@ -32,7 +32,7 @@ public class SourceArticles implements Parcelable {
 
     protected SourceArticles(Parcel in) {
         this.source = in.readString();
-        this.mArticles = in.createTypedArray(Articles.CREATOR);
+        this.articles = in.createTypedArray(Articles.CREATOR);
     }
 
     public static final Parcelable.Creator<SourceArticles> CREATOR = new Parcelable.Creator<SourceArticles>() {
@@ -49,7 +49,7 @@ public class SourceArticles implements Parcelable {
 
     public int getPublisherImageResId() {
         switch (source){
-            case "bbc-mArticles":
+            case "bbc-news":
                 return R.drawable.bbc;
             default:
                 return R.drawable.newspaper;

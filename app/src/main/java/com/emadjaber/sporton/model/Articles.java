@@ -6,68 +6,68 @@ import android.os.Parcelable;
 
 public class Articles implements Parcelable {
 
-    private String mAuthorName;
-    private String mTitle;
-    private String mNewsDescription;
-    private String mPublishDate;
-    private String mURL;
-    private String mImageURL;
+    private String author;
+    private String title;
+    private String description;
+    private String publishedAt;
+    private String url;
+    private String urlToImage;
 
-    public Articles(String authorName, String title, String newsDescription, String publishDate, String URL, String imageURL) {
-        mAuthorName = authorName;
-        mTitle = title;
-        mNewsDescription = newsDescription;
-        mPublishDate = publishDate;
-        mURL = URL;
-        mImageURL = imageURL;
+    public Articles(String authorName, String title, String newsDescription, String publishDate, String URL, String image) {
+        author = authorName;
+        this.title = title;
+        description = newsDescription;
+        publishedAt = publishDate;
+        url = URL;
+        urlToImage = image;
     }
 
-    public String getAuthorName() {
-        return mAuthorName;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuthorName(String authorName) {
-        mAuthorName = authorName;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getTitle() {
-        return mTitle;
+        return title;
     }
 
     public void setTitle(String title) {
-        mTitle = title;
+        this.title = title;
     }
 
-    public String getNewsDescription() {
-        return mNewsDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setNewsDescription(String newsDescription) {
-        mNewsDescription = newsDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getPublishDate() {
-        return mPublishDate;
+    public String getPublishedAt() {
+        return publishedAt;
     }
 
-    public void setPublishDate(String publishDate) {
-        mPublishDate = publishDate;
+    public void setPublishedAt(String publishedAt) {
+        this.publishedAt = publishedAt;
     }
 
-    public String getURL() {
-        return mURL;
+    public String getUrl() {
+        return url;
     }
 
-    public void setURL(String URL) {
-        mURL = URL;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getImageURL() {
-        return mImageURL;
+    public String getUrlToImage() {
+        return urlToImage;
     }
 
-    public void setImageURL(String imageURL) {
-        mImageURL = imageURL;
+    public void setUrlToImage(String urlToImage) {
+        this.urlToImage = urlToImage;
     }
 
     @Override
@@ -77,23 +77,23 @@ public class Articles implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.mAuthorName);
-        dest.writeString(this.mTitle);
-        dest.writeString(this.mNewsDescription);
-        dest.writeString(this.mPublishDate);
-        dest.writeString(this.mURL);
-        dest.writeString(this.mImageURL);
+        dest.writeString(this.author);
+        dest.writeString(this.title);
+        dest.writeString(this.description);
+        dest.writeString(this.publishedAt);
+        dest.writeString(this.url);
+        dest.writeString(this.urlToImage);
     }
 
 
 
     protected Articles(Parcel in) {
-        this.mAuthorName = in.readString();
-        this.mTitle = in.readString();
-        this.mNewsDescription = in.readString();
-        this.mPublishDate = in.readString();
-        this.mURL = in.readString();
-        this.mImageURL = in.readString();
+        this.author = in.readString();
+        this.title = in.readString();
+        this.description = in.readString();
+        this.publishedAt = in.readString();
+        this.url = in.readString();
+        this.urlToImage = in.readString();
     }
 
     public static final Parcelable.Creator<Articles> CREATOR = new Parcelable.Creator<Articles>() {

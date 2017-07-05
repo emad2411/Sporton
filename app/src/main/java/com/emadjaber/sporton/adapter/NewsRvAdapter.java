@@ -47,10 +47,10 @@ implements Callback<SourceArticles>{
         if (mSourceArticles ==null){
             return 0;
         }
-        if(mSourceArticles.mArticles==null){
+        if(mSourceArticles.articles ==null){
             return 0;
         }
-        return mSourceArticles.mArticles.length;
+        return mSourceArticles.articles.length;
     }
 
     @Override
@@ -88,11 +88,11 @@ implements Callback<SourceArticles>{
 
         void bindViews(int position){
             mPublisher.setText(mSourceArticles.source);
-            mTitle.setText(mSourceArticles.mArticles[position].getTitle());
-            mPublishDate.setText(mSourceArticles.mArticles[position].getPublishDate());
-            mDescription.setText(mSourceArticles.mArticles[position].getNewsDescription());
+            mTitle.setText(mSourceArticles.articles[position].getTitle());
+            mPublishDate.setText(mSourceArticles.articles[position].getPublishedAt());
+            mDescription.setText(mSourceArticles.articles[position].getDescription());
             Picasso.with(mContext)
-                    .load(mSourceArticles.mArticles[position].getImageURL())
+                    .load(mSourceArticles.articles[position].getUrlToImage())
                     .into(mNewsImage);
             mAgencyImage.setImageResource(
                     mSourceArticles.getPublisherImageResId()

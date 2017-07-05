@@ -29,7 +29,7 @@ public class NewsApi {
     }
 
     public static void getSourceArticles(Callback<SourceArticles> sourceArticlesCallback){
-        getApi().articles("the-next-web","latest",sourceArticlesCallback);
+        getApi().articles("bbc-news","top",sourceArticlesCallback);
     }
 
 
